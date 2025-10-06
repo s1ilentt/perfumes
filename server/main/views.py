@@ -10,7 +10,7 @@ from .serializers import PerfumeSerializer, CartSerializer, CartItemSerializer
 
 class PerfumeList(APIView):
     def get(self, request, *args, **kwargs):
-        perfumes = Perfume.objects.all()
+        perfumes = Perfume.objects.filter(is_visible=True)
         return Response({'perfumes': PerfumeSerializer(perfumes, many=True).data})
 
     def post(self, request, *args, **kwargs):

@@ -14,6 +14,9 @@ class Perfume(models.Model):
     price = models.FloatField()
     mark = models.FloatField()
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    photo = models.ImageField(null=True, blank=True, upload_to="images/")
+    is_visible = models.BooleanField(default=True)
+
 
     def __str__(self):
         return self.name

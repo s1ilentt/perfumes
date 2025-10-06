@@ -13,7 +13,7 @@ class PerfumeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Perfume
-        fields = ["id", "name", "description", "price", "mark", "category"]
+        fields = ["id", "name", "description", "price", "mark", "category", "photo"]
 
 
 class CartItemSerializer(serializers.ModelSerializer):
