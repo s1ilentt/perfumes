@@ -3,6 +3,7 @@ from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import action
+from django.shortcuts import get_object_or_404
 
 from .models import Perfume, Cart, CartItem
 from .serializers import PerfumeSerializer, CartSerializer, CartItemSerializer
@@ -88,3 +89,10 @@ class CartItemViewSet(viewsets.ModelViewSet):
             return CartItem.objects.none()
         cart = Cart.objects.filter(session_token=token).first()
         return CartItem.objects.filter(cart=cart) if cart else CartItem.objects.none()
+
+
+class PerfumeDetail(APIView):
+    def get(self, request, pk, *args, **kwargs):
+        perfume = get_object_or_404(Perfume, pk=pk)
+        serializer = PerfumeSerializer(perfume)
+        return Response(serializer.data, status=status.HTTP_200_OK)
