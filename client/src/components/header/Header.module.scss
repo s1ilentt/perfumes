@@ -1,0 +1,131 @@
+.headerWrapper {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	padding: 32px 0;
+	background: #000000;
+	overflow: hidden;
+	z-index: 10;
+
+	@media(max-width: 1270.98px) {
+		padding: 32px 10px;
+	}
+	@media(max-width: 768.98px) {
+		padding: 24px 0;
+	}
+}
+
+.headerWrapper::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(circle at 75% 50%, rgba(255, 255, 255, 0.25), transparent 60%),
+		radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.15), transparent 50%);
+	filter: blur(70px);
+	pointer-events: none;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo a {
+	font-family: var(--font-daniloCatalina);
+	font-size: 2.25rem;
+	background: radial-gradient(274% 64% at 43% 80%,
+			rgba(171, 87, 45, 1),
+			rgba(236, 154, 82, 1) 44%,
+			rgba(165, 71, 15, 1) 100%,
+			rgba(171, 88, 41, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
+
+	@media(max-width: 768.98px) {
+		font-size: 1.75rem;
+	}
+
+}
+
+.headerMenuList {
+	display: flex;
+	justify-content: space-between;
+	column-gap: 80px;
+
+	@media(max-width: 768.98px) {
+		display: none;
+	}
+}
+
+.iconList {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: 32px;
+
+	@media(max-width: 768.98px) {
+		display: none;
+	}
+}
+
+.menuBurgerIcon {
+	display: block;
+	flex: 0 0 30px;
+	height: 20px;
+	position: relative;
+	left: 0;
+	top: 0;
+	z-index: 20;
+
+	@media(min-width: 768.98px) {
+		display: none;
+	}
+
+	@media (max-width: 430.98px) {
+		flex: 0 0 24px;
+		height: 18px;
+	}
+}
+
+.menuBurgerIcon::after,
+.menuBurgerIcon::before,
+.menuBurgerIcon span {
+	content: '';
+	position: absolute;
+	right: 0;
+	width: 100%;
+	height: 2px;
+	background: rgb(255, 255, 255);
+	transition: all 0.2s ease 0s;
+}
+
+.menuBurgerIcon::before {
+	top: 0;
+}
+
+.menuBurgerIcon::after {
+	bottom: 0;
+}
+
+.menuBurgerIcon span {
+	top: calc(50% - 1px);
+}
+
+.menuBurgerIconActive span {
+	width: 0;
+}
+
+.menuBurgerIconActive::before {
+	transform: rotate(-45deg);
+	top: calc(50% - 1px);
+}
+
+.menuBurgerIconActive::after {
+	transform: rotate(45deg);
+	bottom: calc(50% - 1px);
+}
