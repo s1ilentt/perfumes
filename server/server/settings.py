@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -49,8 +50,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
-
+CORS_ALLOWED_ORIGINS = [ "http://localhost:3000",
+                         "http://127.0.0.1:3000"]
 ROOT_URLCONF = 'server.urls'
 
 TEMPLATES = [
@@ -126,3 +129,5 @@ import os
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
