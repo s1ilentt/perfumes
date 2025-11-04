@@ -1,9 +1,20 @@
-'use client'
+import { fetchProducts } from "@/api/productAPI";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { ProductsList } from "./sections/products-list/ProductsList";
 
-import { useProducts } from "@/hooks/useProducts"
+export const revalidate = 300;
 
-export default function ShopPage() {
-	const {data} = useProducts();
-	console.log(data)
-	return <div>products</div>
+export default async function ShopPage() {
+	const queryClient = new QueryClient();
+
+	await queryClient.prefetchQuery({
+		queryKey: ['products'],
+		queryFn: fetchProducts
+	});
+
+	return (
+		<HydrationBoundary state={dehydrate(queryClient)}>
+			<ProductsList/>
+		</HydrationBoundary>
+	)
 }

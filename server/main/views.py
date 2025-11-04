@@ -10,40 +10,9 @@ from .serializers import PerfumeSerializer, CartSerializer, CartItemSerializer
 
 
 class PerfumeList(APIView):
-
     def get(self, request, *args, **kwargs):
-        category_name = request.query_params.get('category')
-
-        perfumes = Perfume.objects.all()
-        if category_name:
-            perfumes = perfumes.filter(category__name__iexact=category_name)
-
-
-        per_page = request.headers.get('X-Per-Page')
-        per_page = int(per_page) if per_page and per_page.isdigit() else 6
-
-
-        page = request.query_params.get('page', 1)
-        try:
-            page = int(page)
-        except ValueError:
-            page = 1
-
-        start = (page - 1) * per_page
-        end = start + per_page
-
-        perfumes_page = perfumes[start:end]
-
-
-        serializer = PerfumeSerializer(perfumes_page, many=True)
-
-        return Response({
-            'page': page,
-            'per_page': per_page,
-            'total_items': perfumes.count(),
-            'total_pages': (perfumes.count() + per_page - 1) // per_page,
-            'perfumes': serializer.data
-        }, status=status.HTTP_200_OK)
+        perfumes = Perfume.objects.filter(is_visible=True)
+        return Response({'perfumes': PerfumeSerializer(perfumes, many=True).data})
 
     def post(self, request, *args, **kwargs):
         serializer = PerfumeSerializer(data=request.data)

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.scss';
 import { Header } from '@/components/header/Header';
 import { QueryProvider } from '@/providers/QueryProvider';
+import { Footer } from '@/components/footer/Footer';
 
 const inter = Inter({
 	variable: '--font-inter',
@@ -25,15 +26,10 @@ export default function RootLayout({
 			<body className={`${inter.variable} antialiased`}>
 				<QueryProvider>
 					<Header />
-					<main style={{ marginTop: '100px' }}>
-						<div className='container'>
-							{children}
-						</div>
+					<main>
+						{children}
 					</main>
-					<footer>
-						<div className='container'>
-						</div>
-					</footer>
+					<Footer/>
 				</QueryProvider>
 			</body>
 		</html>
