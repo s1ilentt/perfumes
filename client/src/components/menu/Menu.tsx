@@ -18,9 +18,9 @@ export function Menu({ menuItems, className, isMatch = false }: IMenu) {
 	return (
 		<nav>
 			<ul className={`${styles.menuList} ${className}`}>
-				{menuItems.map(menuItem =>
+				{menuItems.map((menuItem, index) =>
 					<MenuItem
-						key={menuItem.href}
+						key={`${menuItem.href}-${index}`}
 						href={menuItem.href}
 						name={menuItem.name}
 						isActive={isMatch ? !!match(menuItem.href)(pathname) : false}
