@@ -1,0 +1,35 @@
+.productItem {
+	padding: 0 5px 20px;
+	width: 260px;
+	border-radius: 10px;
+	background: rgb(42, 42, 42);
+	text-align: center;
+}
+
+.wrapperImage {
+	margin-bottom: 12px;
+	position: relative;
+	aspect-ratio: 250 / 340;
+}
+
+.name {
+	margin-bottom: 12px;
+	font-weight: 500;
+}
+
+.raiting {
+	margin-bottom: 10px;
+}
+
+.productInfo {
+	font-size: 1rem;
+	font-weight: 700;
+	color: rgba(171, 87, 45, 1);
+}
+
+.volume {
+	display: inline-block;
+	padding: 0 0 0 10px;
+	color: rgb(255, 255, 255);
+	font-weight: 300;
+}
