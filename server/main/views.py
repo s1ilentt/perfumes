@@ -4,15 +4,44 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
+from unicodedata import category
 
-from .models import Perfume, Cart, CartItem
-from .serializers import PerfumeSerializer, CartSerializer, CartItemSerializer
+from .models import Perfume, Cart, CartItem, Category
+from .serializers import PerfumeSerializer, CartSerializer, CartItemSerializer,CategorySerializer
 
 
 class PerfumeList(APIView):
     def get(self, request, *args, **kwargs):
-        perfumes = Perfume.objects.filter(is_visible=True)
-        return Response({'perfumes': PerfumeSerializer(perfumes, many=True).data})
+        category_name = request.query_params.get('category') or request.headers.get('category')
+
+        perfumes = Perfume.objects.all()
+        if category_name:
+            perfumes = perfumes.filter(category__name__iexact=category_name.strip())
+
+
+        per_page = request.headers.get('X-Per-Page')
+        per_page = int(per_page) if per_page and per_page.isdigit() else 6
+
+        page = request.query_params.get('page', 1)
+        try:
+            page = int(page)
+        except ValueError:
+            page = 1
+
+        start = (page - 1) * per_page
+        end = start + per_page
+
+        perfumes_page = perfumes[start:end]
+
+        serializer = PerfumeSerializer(perfumes_page, many=True)
+
+        return Response({
+            'page': page,
+            'per_page': per_page,
+            'total_items': perfumes.count(),
+            'total_pages': (perfumes.count() + per_page - 1) // per_page,
+            'perfumes': serializer.data
+        }, status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
         serializer = PerfumeSerializer(data=request.data)
@@ -95,4 +124,10 @@ class PerfumeDetail(APIView):
     def get(self, request, pk, *args, **kwargs):
         perfume = get_object_or_404(Perfume, pk=pk)
         serializer = PerfumeSerializer(perfume)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class CategoryList(APIView):
+    def get(self, request, *args, **kwargs):
+        categories = Category.objects.all()
+        serializer = CategorySerializer(categories, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
