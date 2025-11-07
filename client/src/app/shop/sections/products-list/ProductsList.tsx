@@ -3,6 +3,7 @@
 import { Spoiler } from '@/components/spoiler/Spoiler';
 import styles from './ProductsList.module.scss';
 import { useProducts } from "@/hooks/useProducts";
+import { ProductItem } from '@/components/product-item/ProductItem';
 
 const collections = [
 	{name: 'Coldd1'},
@@ -15,7 +16,8 @@ const collections = [
 
 export function ProductsList() {
 	const { data } = useProducts();
-	console.log(data)
+	const products = data?.perfumes
+	console.log(products)
 
 	return (
 		<section className={styles.productListSection}>
@@ -39,6 +41,11 @@ export function ProductsList() {
 							</Spoiler>
 						</div>
 					</div>
+				</div>
+				<div className={styles.productsList}>
+					{products?.map(product => 
+						<ProductItem key={product.id} product={product}/>
+					)}
 				</div>
 			</div>
 		</section>

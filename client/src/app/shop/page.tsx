@@ -9,7 +9,7 @@ export default async function ShopPage() {
 
 	await queryClient.prefetchQuery({
 		queryKey: ['products'],
-		queryFn: fetchProducts
+		queryFn: () => fetchProducts()
 	});
 
 	return (
