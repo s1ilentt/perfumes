@@ -61,6 +61,7 @@
 
 .collectionsList {
 	position: absolute;
+	z-index: 5;
 	left: -10px;
 	top: 25px;
 	width: 180px;
@@ -98,4 +99,15 @@
 
 .collectionsList span:hover {
 	color: #f3f3f3;
+}
+
+.productsList {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	column-gap: 40px;
+	row-gap: 65px;
+
+	@media(max-width: 1024.98px) {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }

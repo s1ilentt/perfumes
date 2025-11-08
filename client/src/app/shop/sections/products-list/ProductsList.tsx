@@ -4,20 +4,14 @@ import { Spoiler } from '@/components/spoiler/Spoiler';
 import styles from './ProductsList.module.scss';
 import { useProducts } from "@/hooks/useProducts";
 import { ProductItem } from '@/components/product-item/ProductItem';
-
-const collections = [
-	{name: 'Coldd1'},
-	{name: 'col2'},
-	{name: 'cdsfdol3'},
-	{name: 'Eodl4'},
-	{name: 'codfgfdgl5'},
-	{name: 'colfdsgfd5'},
-]
+import { useCategories } from '@/hooks/useCategories';
 
 export function ProductsList() {
 	const { data } = useProducts();
 	const products = data?.perfumes
+	const { data: categories } = useCategories();
 	console.log(products)
+	console.log(categories)
 
 	return (
 		<section className={styles.productListSection}>
@@ -34,8 +28,8 @@ export function ProductsList() {
 							>
 								<button className={`spoller-button ${styles.spoilerButton}`}>Collections</button>
 								<ul hidden className={styles.collectionsList}>
-									{collections.map((collection, index) => 
-										<li key={index}><span>{collection.name}</span></li>
+									{categories?.map(category =>
+										<li key={category.id}><span>{category.name}</span></li>
 									)}
 								</ul>
 							</Spoiler>
@@ -43,8 +37,8 @@ export function ProductsList() {
 					</div>
 				</div>
 				<div className={styles.productsList}>
-					{products?.map(product => 
-						<ProductItem key={product.id} product={product}/>
+					{products?.map(product =>
+						<ProductItem key={product.id} product={product} imageIsPriority />
 					)}
 				</div>
 			</div>

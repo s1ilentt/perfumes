@@ -1,24 +1,28 @@
+.productItemWrapper {
+	display: block;
+	max-width: 260px;
+}
+
 .productItem {
+	align-items: center;
 	padding: 0 5px 20px;
-	width: 260px;
+	width: 100%;
 	border-radius: 10px;
-	background: rgb(42, 42, 42);
+	background: linear-gradient(180deg, #313131 0%, #121212 100%);
 	text-align: center;
 }
 
 .wrapperImage {
+	width: 100%;
 	margin-bottom: 12px;
 	position: relative;
 	aspect-ratio: 250 / 340;
 }
 
 .name {
-	margin-bottom: 12px;
+	margin-bottom: 9px;
 	font-weight: 500;
-}
-
-.raiting {
-	margin-bottom: 10px;
+	line-height: 1.35;
 }
 
 .productInfo {

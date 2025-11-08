@@ -1,10 +1,17 @@
 import { fetchProducts } from "@/api/productAPI";
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
-export function useProducts() {
+interface IUseProducts {
+	categoryName?: string
+	page?: number
+	limit?: number
+}
+
+export function useProducts({ categoryName, page, limit }: IUseProducts = {}) {
 	const { data, isLoading, isError } = useQuery({
-		queryKey: ['products'],
-		queryFn: () => fetchProducts()
+		queryKey: ['products', { categoryName, page, limit }],
+		queryFn: () => fetchProducts(categoryName, page, limit),
+		placeholderData: keepPreviousData,
 	})
 
 	return { data, isLoading, isError }
