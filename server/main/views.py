@@ -12,15 +12,18 @@ from .serializers import PerfumeSerializer, CartSerializer, CartItemSerializer,C
 
 class PerfumeList(APIView):
     def get(self, request, *args, **kwargs):
-        category_name = request.query_params.get('category') or request.headers.get('category')
+        category_name = request.query_params.get('category')
 
-        perfumes = Perfume.objects.all()
+        perfumes = Perfume.objects.filter(is_visible=True)
+
         if category_name:
             perfumes = perfumes.filter(category__name__iexact=category_name.strip())
 
-
-        per_page = request.headers.get('X-Per-Page')
-        per_page = int(per_page) if per_page and per_page.isdigit() else 6
+        per_page = request.query_params.get('per_page', 6)
+        try:
+            per_page = int(per_page)
+        except ValueError:
+            per_page = 6
 
         page = request.query_params.get('page', 1)
         try:
@@ -30,7 +33,6 @@ class PerfumeList(APIView):
 
         start = (page - 1) * per_page
         end = start + per_page
-
         perfumes_page = perfumes[start:end]
 
         serializer = PerfumeSerializer(perfumes_page, many=True)
