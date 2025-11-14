@@ -1,16 +1,41 @@
 .raitingStars {
-	display: flex;
+	display: inline-flex;
 	height: 20px;
 	overflow: hidden;
 	column-gap: 8px;
-	max-width: 170px;
+	max-width: 200px;
 	margin: 0 auto 10px;
 	position: relative;
 	text-align: left;
+
+	@media(max-width: 430.98px) {
+		height: 13px;
+		column-gap: 6px;
+	}
+}
+
+.star {
+	width: 18.5px;
+	height: 17.5px;
+
+	@media(max-width: 430.98px) {
+		width: 14px;
+		height: 13px;
+	}
+}
+
+.inactiveStars {
+	@media(max-width: 430.98px) {
+		height: 13px;
+	}
 }
 
 .inactiveStars>*:not(:last-child) {
 	margin-right: 9px;
+
+	@media(max-width: 430.98px) {
+		margin-right: 6px;
+	}
 }
 
 .activeStars {
@@ -20,10 +45,18 @@
 	top: 0;
 	overflow: hidden;
 	column-gap: 9px;
+
+	@media(max-width: 430.98px) {
+		column-gap: 6px;
+	}
 }
 
 .activeStars img {
 	flex: 0 0 18.5px;
+
+	@media(max-width: 430.98px) {
+		flex: 0 0 14px;
+	}
 }
 
 .markValue {
@@ -31,4 +64,9 @@
 	color: rgba(255, 255, 255, 1);
 	font-family: var(--font-inter), sans-serif;
 	font-size: 0.75rem;
+
+	@media(max-width: 430.98px) {
+		align-self: center;
+		font-size: 0.625rem;
+	}
 }

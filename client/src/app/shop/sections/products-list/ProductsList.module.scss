@@ -1,9 +1,17 @@
 .productListSection {
-	padding: 70px 0 0;
+	padding: 70px 0;
+
+	@media(max-width: 768.98px) {
+		padding: 40px 0;
+	}
 }
 
 .header {
-	margin-bottom: 60px;
+	margin-bottom: 50px;
+
+	@media(max-width: 768.98px) {
+		margin-bottom: 30px;
+	}
 }
 
 .title {
@@ -13,10 +21,20 @@
 	font-size: 2rem;
 	font-weight: 500;
 	text-align: center;
+
+	@media(max-width: 768.98px) {
+		padding: 0 0 14px;
+		font-size: 1.625rem;
+	}
 }
 
 .filterBar {
 	padding: 18px 0;
+
+	@media(max-width: 768.98px) {
+		font-size: 1.125rem;
+		padding: 14px 0;
+	}
 }
 
 .filters {
@@ -102,12 +120,20 @@
 }
 
 .productsList {
+	margin: 0 0 80px;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	column-gap: 40px;
 	row-gap: 65px;
 
-	@media(max-width: 1024.98px) {
+	@media(max-width: 1023.98px) {
 		grid-template-columns: repeat(3, 1fr);
+	}
+	@media(max-width: 768.98px) {
+		margin: 0 0 40px;
+		grid-template-columns: repeat(2, minmax(100px, 260px));
+		column-gap: 30px;
+		row-gap: 35px;
+		justify-content: space-around;
 	}
 }

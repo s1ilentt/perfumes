@@ -35,3 +35,16 @@
 		background-color: rgb(245, 245, 245);
 	}
 }
+
+.buttonTransparent {
+	padding: 10px 30px;
+	border: 1px solid rgba(255, 255, 255, 1);
+	background-color: transparent;
+	font-size: 0.875rem;
+}
+
+.buttonTransparent:hover {
+	@media (min-width: 1024px) {
+		background-color: rgba(245, 245, 245, 0.13);
+	}
+}

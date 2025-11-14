@@ -29,7 +29,7 @@ export default function RootLayout({
 					<main>
 						{children}
 					</main>
-					{/* <Footer/> */}
+					<Footer/>
 				</QueryProvider>
 			</body>
 		</html>

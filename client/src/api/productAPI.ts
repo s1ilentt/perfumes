@@ -12,7 +12,7 @@ export const fetchProducts = async (category?: string, page?: number, limit?: nu
 		params: {
 			...(category ? { category } : {}),
 			...(page ? { page } : {}),
-			...(limit ? { 'per-page': limit } : {}),
+			...(limit ? { 'per_page': limit } : {}),
 		}
 	});
 

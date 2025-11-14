@@ -1,14 +1,13 @@
 .productItemWrapper {
 	display: block;
 	max-width: 260px;
+	background: linear-gradient(180deg, #313131 0%, #121212 100%);
+	border-radius: 10px;
+	padding: 0 5px 20px;
 }
 
 .productItem {
-	align-items: center;
-	padding: 0 5px 20px;
 	width: 100%;
-	border-radius: 10px;
-	background: linear-gradient(180deg, #313131 0%, #121212 100%);
 	text-align: center;
 }
 
@@ -23,12 +22,21 @@
 	margin-bottom: 9px;
 	font-weight: 500;
 	line-height: 1.35;
+
+	@media(max-width: 430.98px) {
+		margin-bottom: 4px;
+		font-size: 1rem;
+	}
 }
 
 .productInfo {
 	font-size: 1rem;
 	font-weight: 700;
 	color: rgba(171, 87, 45, 1);
+
+	@media(max-width: 430.98px) {
+		font-size: 0.875rem;
+	}
 }
 
 .volume {

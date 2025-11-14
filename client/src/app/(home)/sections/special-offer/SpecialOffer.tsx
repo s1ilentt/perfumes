@@ -1,8 +1,14 @@
+'use client'
+
 import Image from "next/image";
 import styles from './SpecialOffer.module.scss';
 import { Button } from "@/components/UI/button/Button";
+import { useRouter } from "next/navigation";
+import { PAGES } from "@/constants/pages-path";
 
 export function SpecialOffer() {
+	const router = useRouter();
+
 	return (
 		<section className={styles.specialOfferSections}>
 			<div className='container'>
@@ -16,7 +22,7 @@ export function SpecialOffer() {
 								Shop now and embrace the sweet smell of victory with Local Face.
 							</p>
 						</div>
-						<Button>Shop Now</Button>
+						<Button onClick={() => router.push(PAGES.SHOP)}>Shop Now</Button>
 					</div>
 					<div className={styles.imageBlock}>
 						<Image

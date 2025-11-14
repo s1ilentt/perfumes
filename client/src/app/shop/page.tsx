@@ -1,20 +1,25 @@
 import { fetchProducts } from "@/api/productAPI";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { ProductsList } from "./sections/products-list/ProductsList";
+import { SpecialOffers } from "./sections/special-offers/SpecialOffers";
 
-export const revalidate = 300;
+export const revalidate = 180;
 
 export default async function ShopPage() {
 	const queryClient = new QueryClient();
 
 	await queryClient.prefetchQuery({
-		queryKey: ['products'],
-		queryFn: () => fetchProducts()
+		queryKey: ['products', '', 1, 12],
+		queryFn: () => fetchProducts('', 1, 12),
+		staleTime: 1000 * 60 * 3,
 	});
 
 	return (
-		<HydrationBoundary state={dehydrate(queryClient)}>
-			<ProductsList/>
-		</HydrationBoundary>
+		<>
+			<HydrationBoundary state={dehydrate(queryClient)}>
+				<ProductsList />
+			</HydrationBoundary>
+			<SpecialOffers />
+		</>
 	)
 }

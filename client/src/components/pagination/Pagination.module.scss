@@ -1,0 +1,28 @@
+.pagination {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.pagination img {
+	display: block;
+}
+
+.pagination button {
+	padding: 6px 11px;
+}
+
+.disabledButton {
+	opacity: 0.5;
+	pointer-events: none;
+	user-select: none;
+	-webkit-user-drag: none;
+}
+
+.text {
+	color: rgba(144, 144, 144, 1);
+
+	@media(max-width: 430.98px) {
+		font-size: 1.125rem;
+	}
+}

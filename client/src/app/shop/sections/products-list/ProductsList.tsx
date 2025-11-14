@@ -5,13 +5,37 @@ import styles from './ProductsList.module.scss';
 import { useProducts } from "@/hooks/useProducts";
 import { ProductItem } from '@/components/product-item/ProductItem';
 import { useCategories } from '@/hooks/useCategories';
+import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { Pagination } from '@/components/pagination/Pagination';
 
 export function ProductsList() {
-	const { data } = useProducts();
-	const products = data?.perfumes
+	const [category, setCategory] = useState('');
+	const [currentPage, setCurrentPage] = useState(1);
+	const [limit, setLimit] = useState(12);
+
+	const isTablet = useMediaQuery({ maxWidth: 1023 });
+	const isMobile = useMediaQuery({ maxWidth: 768 });
+
+	useEffect(() => {
+		if (isMobile) setLimit(6);
+		else if (isTablet) setLimit(9);
+		else setLimit(12);
+	}, [isMobile, isTablet]);
+
+	const { data } = useProducts({
+		categoryName: category,
+		page: currentPage,
+		limit
+	});
+	
+	const products = data?.perfumes || [];
+	const totalPages = data?.total_pages || 1;
 	const { data: categories } = useCategories();
-	console.log(products)
-	console.log(categories)
+
+	const handleCategoryName = (categoryName: string) => {
+		setCategory(prev => (prev === categoryName ? '' : categoryName));
+	}
 
 	return (
 		<section className={styles.productListSection}>
@@ -29,7 +53,12 @@ export function ProductsList() {
 								<button className={`spoller-button ${styles.spoilerButton}`}>Collections</button>
 								<ul hidden className={styles.collectionsList}>
 									{categories?.map(category =>
-										<li key={category.id}><span>{category.name}</span></li>
+										<li
+											onClick={() => handleCategoryName(category.name)}
+											key={category.id}
+										>
+											<span>{category.name}</span>
+										</li>
 									)}
 								</ul>
 							</Spoiler>
@@ -37,10 +66,11 @@ export function ProductsList() {
 					</div>
 				</div>
 				<div className={styles.productsList}>
-					{products?.map(product =>
+					{products.map(product =>
 						<ProductItem key={product.id} product={product} imageIsPriority />
 					)}
 				</div>
+				<Pagination page={currentPage} setPage={setCurrentPage} totalPages={totalPages}/>
 			</div>
 		</section>
 	)

@@ -7,10 +7,11 @@ interface IUseProducts {
 	limit?: number
 }
 
-export function useProducts({ categoryName, page, limit }: IUseProducts = {}) {
+export function useProducts({ categoryName = '', page = 1, limit = 12 }: IUseProducts = {}) {
 	const { data, isLoading, isError } = useQuery({
-		queryKey: ['products', { categoryName, page, limit }],
+		queryKey: ['products', categoryName, page, limit],
 		queryFn: () => fetchProducts(categoryName, page, limit),
+		staleTime: 1000 * 60 * 3,
 		placeholderData: keepPreviousData,
 	})
 

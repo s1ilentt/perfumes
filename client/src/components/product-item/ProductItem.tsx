@@ -1,9 +1,16 @@
+'use client'
+
 import { IProduct } from '@/types/product.interface';
 import styles from './ProductItem.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PAGES } from '@/constants/pages-path';
-import { RaitingStars } from '../UI/raiting-stars/RaitingStars';
+import dynamic from 'next/dynamic';
+
+const DynamicRaitingStars = dynamic (
+	() => import('../UI/raiting-stars/RaitingStars').then(mod => mod.RaitingStars),
+	{ssr: false}
+)
 
 interface IProductItem {
 	product: IProduct
@@ -30,7 +37,7 @@ export function ProductItem({ product, imageIsPriority = false }: IProductItem) 
 				<div className={styles.name}>
 					{product.name}
 				</div>
-				<RaitingStars mark={product.mark} />
+				<DynamicRaitingStars mark={product.mark} />
 				<div className={styles.productInfo}>
 					$ <span>{product.price}.00</span>
 					<span className={styles.volume}>100ml</span>

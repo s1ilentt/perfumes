@@ -9,7 +9,7 @@ export function Button({ background, children, ...props }: IButton) {
 	return (
 		<button
 			{...props}
-			className={`${styles.button} ${background === 'white' ? styles.buttonWhite : ''}`}
+			className={`${styles.button} ${background === 'white' ? styles.buttonWhite : ''} ${background === 'transparent' ? styles.buttonTransparent : ''}`}
 		>
 			{children}
 		</button>
