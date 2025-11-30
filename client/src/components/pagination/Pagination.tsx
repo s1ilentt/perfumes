@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import styles from './Pagination.module.scss';
+import { handleButtonClick } from '@/utils/handleButtonClick';
 
 interface IPagination {
 	page: number
@@ -12,10 +13,12 @@ interface IPagination {
 export function Pagination({ page, setPage, totalPages }: IPagination) {
 	const handlePrev = () => {
 		if (page > 1) setPage(page - 1);
+		handleButtonClick();
 	};
 
 	const handleNext = () => {
 		if (page < totalPages) setPage(page + 1);
+		handleButtonClick();
 	};
 
 	return (

@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { MenuBurger } from '../modals/menu-burger/MenuBurger';
 import { useState } from 'react';
+import { SearchInput } from '../UI/search-input/SearchInput';
 
 const HEADER_MENU: IMenuItem[] = [
 	{
@@ -22,6 +23,7 @@ const HEADER_MENU: IMenuItem[] = [
 
 export function Header() {
 	const [isMenuShow, setIsMenuShow] = useState(false);
+	const [isShowInput, setIsShowInput] = useState(false);
 
 	return (
 		<header className={styles.headerWrapper}>
@@ -36,20 +38,29 @@ export function Header() {
 						isMatch
 					/>
 					<div className={styles.iconList}>
-						<Image src="/icons/search.svg" alt="search icon" width={32} height={32} />
-						<Link href={PAGES.PROFILE}>
+						<SearchInput isShow={isShowInput} hideFunction={() => setIsShowInput(false)} />
+						<button
+							onClick={() => setIsShowInput(prev => !prev)}
+							type='button'
+						>
+							{isShowInput
+								? <Image src="/icons/cross.svg" alt="cross icon" width={32} height={32} />
+								: <Image src="/icons/search.svg" alt="search icon" width={32} height={32} />
+							}
+						</button>
+						<Link href={PAGES.CART}>
 							<Image src="/icons/profile.svg" alt="profile icon" width={26} height={26} />
 						</Link>
 						<Link href={PAGES.CART}>
 							<Image src="/icons/cart.svg" alt="cart icon" width={26} height={26} />
 						</Link>
+						<button
+							onClick={() => setIsMenuShow(prev => !prev)}
+							className={`${styles.menuBurgerIcon} ${isMenuShow ? styles.menuBurgerIconActive : ''}`}
+						>
+							<span></span>
+						</button>
 					</div>
-					<button
-						onClick={() => setIsMenuShow(prev => !prev)}
-						className={`${styles.menuBurgerIcon} ${isMenuShow ? styles.menuBurgerIconActive : ''}`}
-					>
-						<span></span>
-					</button>
 				</div>
 			</div>
 			<MenuBurger isActive={isMenuShow} hideFunction={() => setIsMenuShow(false)} />

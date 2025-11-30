@@ -1,0 +1,167 @@
+.inputBlock {
+	position: relative;
+	right: -25px;
+	top: 0;
+
+	@media (max-width: 1240.98px) {
+		right: -20px;
+	}
+	@media (max-width: 768.98px) {
+		right: -35px;
+	}
+	@media (max-width: 600.98px) {
+		display: none;
+	}
+}
+
+.input {
+	position: relative;
+	transition: transform 0.45s ease, border 0.3s ease;
+	transform: translate(100%, 0);
+	max-width: 200px;
+	height: 34px;
+	background-color: rgb(78, 78, 78);
+	border-color: rgb(136, 136, 136);
+	padding: 6px 35px 6px 20px;
+	border-radius: 4px;
+	font-size: 1rem;
+
+	@media (max-width: 1240.98px) {
+		height: 30px;
+		max-width: 180px;
+		padding: 4px 25px 4px 15px;
+	}
+}
+
+.input::placeholder {
+	color: rgb(184, 184, 184);
+}
+
+.input:focus {
+	transition: border-color 0.3s ease;
+	border: 1px solid rgb(136, 136, 136);
+}
+
+.inputActive {
+	transform: translate(0, 0);
+	transition: transform 0.45s ease, border-color 0.3s ease;
+}
+
+.inputWrapper {
+	position: relative;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+
+}
+
+.inputBody {
+	position: fixed;
+	width: 340px;
+	padding: 30px 15px 30px 30px;
+	background-color: #343434;
+	visibility: hidden;
+	opacity: 0;
+	border-radius: 4px;
+	transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+	transform: translateY(10px);
+
+	@media (max-width: 1240.98px) {
+		padding: 20px 15px 20px 20px;
+		width: 280px;
+	}
+	@media (max-width: 600.98px) {
+		display: none;
+	}
+}
+
+.inputBodyActive {
+	transform: translateY(0);
+	visibility: visible;
+	opacity: 1;
+}
+
+.inputBodyHeader {
+	font-family: var(--font-inter), sans-serif;
+	font-size: 0.875rem;
+	color: #c4c4c4;
+	margin-bottom: 0.75em;
+}
+
+.itemWrapper {
+	display: flex;
+	max-width: 300px;
+	column-gap: 25px;
+	align-items: center;
+	padding: 10px;
+	border: 2px solid rgba(0, 0, 0, 0);
+	transition: border-color 0.1s ease 0s;
+
+	@media (max-width: 1240.98px) {
+		padding: 5px 10px;
+		max-width: 250px;
+		column-gap: 20px;
+	}
+}
+
+.itemWrapper:hover {
+	border-color: rgba(255, 255, 255, 0.2);
+}
+
+.inputList {
+	max-height: 423px;
+	overflow: auto;
+	padding: 0 10px 0 0;
+	margin: 0;
+
+	/* For Webkit (Chrome, Safari, Opera) */
+	&::-webkit-scrollbar {
+		width: 4px;
+		@media (max-width: 1240.98px) {
+			width: 3px;
+		}
+	}
+
+	/* For a scroll slider */
+	&::-webkit-scrollbar-thumb {
+		background-color: #c9c9c9;
+		border-radius: 5px;
+	}
+
+	/* For the track of scrolling */
+	&::-webkit-scrollbar-track {
+		background-color: #242424;
+	}
+	@media (max-width: 1240.98px) {
+		padding: 0 7px 0 0;
+		max-height: 328px;
+	}
+}
+
+.imageWrapper {
+	flex: 0 0 60px;
+	position: relative;
+	aspect-ratio: 250 / 340;
+
+	@media (max-width: 1240.98px) {
+		flex: 0 0 50px;
+	}
+}
+
+.productText {
+	font-weight: 400;
+	font-size: 0.875rem;
+	line-height: 1.25;
+}
+
+.productName {
+	font-size: 1rem;
+	color: #ffffff;
+	margin-bottom: 3px;
+}
+
+.productPrice {
+	font-size: 1rem;
+	color: #d0d0d0;
+	line-height: 1.5;
+}

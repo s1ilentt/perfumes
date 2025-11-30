@@ -15,13 +15,14 @@ const DynamicRaitingStars = dynamic (
 interface IProductItem {
 	product: IProduct
 	imageIsPriority?: boolean
+	renderRaitingStars?: boolean
 }
 
-export function ProductItem({ product, imageIsPriority = false }: IProductItem) {
+export function ProductItem({ product, imageIsPriority = false, renderRaitingStars = true }: IProductItem) {
 	return (
 		<Link
 			className={styles.productItemWrapper}
-			href={PAGES.PRODUCT(product.name)}
+			href={PAGES.PRODUCT(product.id)}
 		>
 			<div className={styles.productItem}>
 				<div className={styles.wrapperImage}>
@@ -37,7 +38,7 @@ export function ProductItem({ product, imageIsPriority = false }: IProductItem) 
 				<div className={styles.name}>
 					{product.name}
 				</div>
-				<DynamicRaitingStars mark={product.mark} />
+				{renderRaitingStars && <DynamicRaitingStars mark={product.mark} />}
 				<div className={styles.productInfo}>
 					$ <span>{product.price}.00</span>
 					<span className={styles.volume}>100ml</span>

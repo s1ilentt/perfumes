@@ -1,7 +1,11 @@
+'use client';
+
 import { IOffer } from '@/types/offer.interface';
 import styles from './Offer.module.scss';
 import Image from 'next/image';
 import { Button } from '../UI/button/Button';
+import { useRouter } from 'next/navigation';
+import { PAGES } from '@/constants/pages-path';
 
 interface IOfferProps {
 	offerInfo: IOffer
@@ -9,6 +13,8 @@ interface IOfferProps {
 }
 
 export function Offer({ offerInfo, secondOffer }: IOfferProps) {
+	const router = useRouter();
+
 	return (
 		<div className={`${styles.offer} ${secondOffer ? styles.offerRight : ''}`}>
 			<div className={`${styles.container} ${secondOffer ? styles.containerRight : ''}`}>
@@ -29,7 +35,12 @@ export function Offer({ offerInfo, secondOffer }: IOfferProps) {
 						<div className={styles.name}>{offerInfo.name}</div>
 						<div className={styles.notes}>{offerInfo.notes}</div>
 						<p className={styles.description}>{offerInfo.description}</p>
-						<Button background='transparent'>Know More</Button>
+						<Button
+							onClick={() => router.push(PAGES.PRODUCT(secondOffer ? 10 : 12))}
+							background='transparent'
+						>
+							Know More
+						</Button>
 					</div>
 				</div>
 			</div>

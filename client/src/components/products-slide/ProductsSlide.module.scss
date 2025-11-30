@@ -1,0 +1,30 @@
+.ProductsSlide {
+	display: flex;
+	column-gap: 40px;
+	justify-content: center;
+
+	@media(max-width: 900.98px) {
+		column-gap: 20px;
+	}
+
+	@media (max-width: 768.98px) {
+		display: grid;
+		grid-template-columns: minmax(100px, 260px) minmax(100px, 260px);
+		justify-content: space-around;
+		grid-template-rows: auto auto;
+		grid-row-gap: 40px;
+		grid-column-gap: 16px;
+	}
+
+	@media (max-width: 599.98px) {
+		grid-row-gap: 24px;
+	}
+
+	@media (max-width: 400.98px) {
+		grid-column-gap: 12px;
+	}
+}
+
+.ProductsSlide > a {
+	flex: 0 1 260px;
+}

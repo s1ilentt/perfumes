@@ -1,0 +1,39 @@
+.title {
+	margin: 0 0 60px;
+	color: rgba(171, 87, 45, 1);
+	font-size: 3.125rem;
+	font-weight: 500;
+	text-align: center;
+
+	@media (max-width: 768.98px) {
+		font-size: 2rem;
+		margin: 0 0 35px;
+	}
+	@media (max-width: 360.98px) {
+		font-size: 1.75rem;
+	}
+}
+
+.swiper :global(.swiper-button-prev),
+.swiper :global(.swiper-button-next) {
+	height: 32px;
+	width: 32px;
+	color: rgba(82, 82, 82, 1);
+
+	@media(max-width: 500.98px) {
+		height: 22px;
+		width: 22px;
+	}
+}
+
+.swiper :global(.swiper-button-prev svg),
+.swiper :global(.swiper-button-next svg) {
+	height: 28px;
+	width: 28px;
+	color: rgba(82, 82, 82, 1);
+
+	@media(max-width: 500.98px) {
+		height: 20px;
+		width: 20px;
+	}
+}

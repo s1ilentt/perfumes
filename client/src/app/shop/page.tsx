@@ -11,7 +11,6 @@ export default async function ShopPage() {
 	await queryClient.prefetchQuery({
 		queryKey: ['products', '', 1, 12],
 		queryFn: () => fetchProducts('', 1, 12),
-		staleTime: 1000 * 60 * 3,
 	});
 
 	return (

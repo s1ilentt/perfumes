@@ -23,7 +23,8 @@ export function Menu({ menuItems, className, isMatch = false }: IMenu) {
 						key={`${menuItem.href}-${index}`}
 						href={menuItem.href}
 						name={menuItem.name}
-						isActive={isMatch ? !!match(menuItem.href)(pathname) : false}
+						isActive={isMatch ? !!match(menuItem.href as string)(pathname) : false}
+						category={menuItem.category}
 					/>
 				)}
 			</ul>

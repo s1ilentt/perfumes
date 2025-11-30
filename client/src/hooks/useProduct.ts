@@ -1,12 +1,12 @@
-import { fetchCategories } from "@/api/productAPI";
+import { fetchProduct } from "@/api/productAPI";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
 
-export function useCategories() {
+export function useProduct(id: number) {
 	const { data, isLoading, isError, error } = useQuery({
-		queryKey: ['categories'],
-		queryFn: fetchCategories
+		queryKey: ['product', id],
+		queryFn: () => fetchProduct(id)
 	})
 
 	useEffect(() => {

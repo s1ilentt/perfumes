@@ -1,0 +1,158 @@
+.productDetailSection {
+	padding: 50px 0 100px;
+
+	@media(max-width: 768.98px) {
+		padding: 50px 0;
+	}
+}
+
+.notFoundTitle {
+	font-size: 2.5rem;
+	font-weight: 500;
+	text-align: center;
+
+	@media(max-width:768.98px) {
+		font-size: 2rem;
+	}
+}
+
+.contentWrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: 60px;
+
+	@media(max-width: 768.98px) {
+		flex-direction: column;
+		row-gap: 40px;
+	}
+}
+
+.imageBlock {
+	flex: 0 0 40%;
+	position: relative;
+	aspect-ratio: 532 / 806;
+
+	@media(max-width: 768.98px) {
+		flex: 0 1 auto;
+		width: 75%;
+	}
+	@media(max-width: 430.98px) {
+		width: 100%;
+	}
+}
+
+.productInfoWrapper {
+	max-width: 608px;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	row-gap: 32px;
+
+	@media(max-width: 768.98px) {
+		row-gap: 20px;
+	}
+}
+
+.title {
+	font-size: 2.5rem;
+	font-weight: 500;
+	line-height: 1.3;
+
+	@media(max-width:768.98px) {
+		font-size: 1.625rem;
+	}
+}
+
+.description {
+	font-size: 1.125rem;
+	line-height: 1.3;
+
+	@media(max-width:768.98px) {
+		font-size: 1rem;
+	}
+}
+
+.starsRaiting>div {
+	margin: 0;
+}
+
+.price {
+	color: rgba(171, 87, 45, 1);
+	font-size: 1.5rem;
+	font-weight: 700;
+
+	@media(max-width:768.98px) {
+		font-size: 1.25rem;
+	}
+}
+
+.quantityProduct {
+	display: flex;
+	column-gap: 16px;
+	align-items: center;
+}
+
+.quantityText {
+	font-weight: 500;
+}
+
+.counter {
+	display: flex;
+	font-family: var(--font-inter), sans-serif;
+	font-weight: 700;
+	color: rgba(171, 87, 45, 1);
+	border: 1px solid rgba(255, 255, 255, 1);
+	border-radius: 10px;
+}
+
+.counter button {
+	padding: 11px 24px;
+	line-height: 1;
+	font-size: 1.625rem;
+	transition: color 0.25s ease 0s;
+
+	@media(max-width:768.98px) {
+		padding: 9px 18px;
+		font-size: 1.5rem;
+	}
+}
+
+.counter button:hover {
+	@media (min-width: 1024px) {
+		color: rgb(225, 109, 59);
+	}
+}
+
+.counter button:disabled {
+	pointer-events: none;
+	color: rgba(133, 133, 133, 1);
+	user-select: none;
+}
+
+.inputQty {
+	width: 50px;
+	text-align: center;
+	font-size: 1.375rem;
+	display: inline-block;
+	background-color: transparent;
+	appearance: textfield;
+	-webkit-appearance: textfield;
+	-moz-appearance: textfield;
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	@media(max-width: 768.98px) {
+		height: 42px;
+	}
+}
+
+.productInfoWrapper>button {
+	@media(max-width: 430.98px) {
+		align-self: stretch;
+	}
+}

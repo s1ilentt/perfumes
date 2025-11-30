@@ -63,7 +63,7 @@ export function MenuBurger({ isActive, hideFunction }: Props) {
 						<a onClick={() => handleLinkClick(PAGES.CART)}>Cart</a>
 					</li>
 					<li className={styles.menuListItem}>
-						<a onClick={() => handleLinkClick(PAGES.PROFILE)}>Profile</a>
+						<a onClick={() => handleLinkClick(PAGES.CART)}>Profile</a>
 					</li>
 				</ul>
 			</div>

@@ -1,6 +1,7 @@
 import { IProducts } from '@/types/products.interface';
 import { $host } from './config';
 import { ICategory } from '@/types/category.interface';
+import { IProduct } from '@/types/product.interface';
 
 export const fetchCategories = async () => {
 	const { data } = await $host.get<ICategory[]>('api/v1/categories');
@@ -15,6 +16,10 @@ export const fetchProducts = async (category?: string, page?: number, limit?: nu
 			...(limit ? { 'per_page': limit } : {}),
 		}
 	});
+	return data;
+}
 
+export const fetchProduct = async (id: number) => {
+	const { data } = await $host.get<IProduct>('api/v1/perfumes/' + id);
 	return data;
 }

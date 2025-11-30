@@ -28,6 +28,12 @@
 	color: rgba(171, 87, 45, 1);
 	font-family: var(--font-inter), sans-serif;
 	font-size: 1.3125rem;
+
+	@media(max-width: 430.98px) {
+		padding: 12px 0;
+		font-size: 1.25rem;
+		text-align: center;
+	}
 }
 
 .buttonWhite:hover {

@@ -6,7 +6,8 @@ import { PAGES } from '@/constants/pages-path';
 import Image from 'next/image';
 import { IMenuItem } from '@/types/menu-item.interface';
 import { Menu } from '../menu/Menu';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useCategories } from '@/hooks/useCategories';
 
 const PAGES_MENU: IMenuItem[] = [
 	{
@@ -22,32 +23,24 @@ const PAGES_MENU: IMenuItem[] = [
 		name: 'Cart'
 	},
 	{
-		href: PAGES.PROFILE,
+		href: PAGES.CART,
 		name: 'Profile'
-	}
-]
-
-const CATEGORIES_MENU: IMenuItem[] = [
-	{
-		href: PAGES.SHOP,
-		name: 'Fashion'
-	},
-	{
-		href: PAGES.SHOP,
-		name: 'Jawery'
-	},
-	{
-		href: PAGES.SHOP,
-		name: 'Sports'
-	},
-	{
-		href: PAGES.SHOP,
-		name: 'Outdoor'
 	}
 ]
 
 export function Footer() {
 	const [userEmail, setUserEmail] = useState('');
+
+	const { data: categories } = useCategories();
+	const categoriesMenu = useMemo(() => {
+		return (categories ?? [])
+			.slice(0, 4)
+			.map(category => ({
+				name: category.name.split(' ')[0],
+				href: PAGES.SHOP,
+				category: category.name
+			}));
+	}, [categories]);
 
 	const handleButtonSubmit = () => {
 		const emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/;
@@ -106,11 +99,11 @@ export function Footer() {
 					<div className={styles.navBlock}>
 						<div>
 							<h4 className={styles.menuTitle}>Categories</h4>
-							<Menu menuItems={CATEGORIES_MENU} className={styles.footerMenuList}/>
+							<Menu menuItems={categoriesMenu} className={styles.footerMenuList} />
 						</div>
 						<div>
 							<h4 className={styles.menuTitle}>Pages</h4>
-							<Menu menuItems={PAGES_MENU} className={styles.footerMenuList}/>
+							<Menu menuItems={PAGES_MENU} className={styles.footerMenuList} />
 						</div>
 					</div>
 				</div>
