@@ -1,12 +1,13 @@
-'use client'
+'use client';
 import { useEffect, useRef } from 'react';
-import styles from './MenuBurger.module.scss'
+import styles from './MenuBurger.module.scss';
 import { PAGES } from '@/constants/pages-path';
 import { useRouter } from 'next/navigation';
+import { handleButtonClick } from '@/utils/handleButtonClick';
 
 interface Props {
-	isActive: boolean
-	hideFunction: () => void
+	isActive: boolean;
+	hideFunction: () => void;
 }
 
 export function MenuBurger({ isActive, hideFunction }: Props) {
@@ -23,7 +24,7 @@ export function MenuBurger({ isActive, hideFunction }: Props) {
 
 	useEffect(() => {
 		const menu = menuRef.current;
-		if(!menu) return
+		if (!menu) return;
 
 		menu.addEventListener('click', clickOutsideMenuBody);
 
@@ -41,16 +42,14 @@ export function MenuBurger({ isActive, hideFunction }: Props) {
 		};
 	}, []);
 
-	const handleLinkClick = (href: string):void => {
+	const handleLinkClick = (href: string): void => {
 		route.push(href);
 		hideFunction();
-	}
+		handleButtonClick();
+	};
 
 	return (
-		<div
-			ref={menuRef}
-			className={`${styles.menu} ${isActive ? styles.menuActive : ''}`}
-		>
+		<div ref={menuRef} className={`${styles.menu} ${isActive ? styles.menuActive : ''}`}>
 			<div className={styles.menuBody}>
 				<ul className={styles.menuList}>
 					<li className={styles.menuListItem}>

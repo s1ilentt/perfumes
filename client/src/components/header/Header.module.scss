@@ -8,16 +8,16 @@
 	overflow: hidden;
 	z-index: 10;
 
-	@media(max-width: 1270.98px) {
+	@media (max-width: 1270.98px) {
 		padding: 32px 10px;
 	}
-	@media(max-width: 768.98px) {
+	@media (max-width: 768.98px) {
 		padding: 24px 0;
 	}
 }
 
 .headerWrapper::before {
-	content: "";
+	content: '';
 	position: absolute;
 	inset: 0;
 	background:
@@ -37,10 +37,10 @@
 .logo {
 	flex: 0 1 380px;
 
-	@media(max-width: 1240.98px) {
+	@media (max-width: 1240.98px) {
 		flex: 0 1 336px;
 	}
-	@media(max-width: 768.98px) {
+	@media (max-width: 768.98px) {
 		flex: 0 1 auto;
 	}
 }
@@ -48,17 +48,19 @@
 .logo a {
 	font-family: var(--font-daniloCatalina);
 	font-size: 2.25rem;
-	background: radial-gradient(274% 64% at 43% 80%,
-			rgba(171, 87, 45, 1),
-			rgba(236, 154, 82, 1) 44%,
-			rgba(165, 71, 15, 1) 100%,
-			rgba(171, 88, 41, 1) 100%);
+	background: radial-gradient(
+		274% 64% at 43% 80%,
+		rgba(171, 87, 45, 1),
+		rgba(236, 154, 82, 1) 44%,
+		rgba(165, 71, 15, 1) 100%,
+		rgba(171, 88, 41, 1) 100%
+	);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
 	color: transparent;
 
-	@media(max-width: 768.98px) {
+	@media (max-width: 768.98px) {
 		font-size: 1.75rem;
 	}
 }
@@ -68,10 +70,10 @@
 	justify-content: space-between;
 	column-gap: 80px;
 
-	@media(max-width: 992.98px) {
+	@media (max-width: 992.98px) {
 		column-gap: 50px;
 	}
-	@media(max-width: 768.98px) {
+	@media (max-width: 768.98px) {
 		display: none;
 	}
 }
@@ -82,23 +84,22 @@
 	align-items: center;
 	column-gap: 32px;
 
-	
 	@media (max-width: 1240.98px) {
 		column-gap: 24px;
 	}
-	@media(max-width: 768.98px) {
+	@media (max-width: 768.98px) {
 		column-gap: 40px;
 	}
 }
 
-.iconList a {
-	@media(max-width: 768.98px) {
+.iconButton {
+	@media (max-width: 768.98px) {
 		display: none;
 	}
 }
 
 .iconList button:nth-child(2) {
-	@media(max-width: 600.98px) {
+	@media (max-width: 600.98px) {
 		display: none;
 	}
 }
@@ -112,7 +113,7 @@
 	top: 0;
 	z-index: 20;
 
-	@media(min-width: 768.98px) {
+	@media (min-width: 768.98px) {
 		display: none;
 	}
 

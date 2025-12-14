@@ -1,15 +1,18 @@
-'use client'
+'use client';
 
-import { useProduct } from "@/hooks/useProduct";
-import { useParams } from "next/navigation";
+import { useProduct } from '@/hooks/useProduct';
+import { useParams } from 'next/navigation';
 import styles from './ProductDetail.module.scss';
-import Image from "next/image";
-import { Button } from "@/components/UI/button/Button";
-import { RaitingStars } from "@/components/UI/raiting-stars/RaitingStars";
-import { ChangeEvent, useState } from "react";
+import Image from 'next/image';
+import { Button } from '@/components/UI/button/Button';
+import { RaitingStars } from '@/components/UI/raiting-stars/RaitingStars';
+import { ChangeEvent, useState } from 'react';
+import { useCart } from '@/hooks/useCart';
 
 export function ProductDetail() {
 	const [qtyProduct, setQtyProduct] = useState(1);
+
+	const { addToCart } = useCart();
 
 	const params = useParams();
 	const id = Number(params.id);
@@ -27,17 +30,25 @@ export function ProductDetail() {
 		} else {
 			setQtyProduct(value);
 		}
-	}
+	};
+
+	const handleButtonCart = () => {
+		if (!product) return;
+
+		addToCart(product.id, qtyProduct);
+
+		alert('The product has been successfully added to cart');
+	};
 
 	if (isLoading) {
-		return null
+		return null;
 	}
 
 	return (
 		<section className={styles.productDetailSection}>
 			<div className='container'>
-				{product
-					? <div className={styles.contentWrapper}>
+				{product ? (
+					<div className={styles.contentWrapper}>
 						<div className={styles.imageBlock}>
 							<Image
 								src={process.env.NEXT_PUBLIC_API_URL + product.photo}
@@ -82,11 +93,15 @@ export function ProductDetail() {
 									</button>
 								</div>
 							</div>
-							<Button background='white'>Add to Cart</Button>
+							<Button onClick={handleButtonCart} background='white'>
+								Add to Cart
+							</Button>
 						</div>
 					</div>
-					: <h2 className={styles.notFoundTitle}>Product Not Found</h2>}
+				) : (
+					<h2 className={styles.notFoundTitle}>Product Not Found</h2>
+				)}
 			</div>
 		</section>
-	)
+	);
 }

@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { Spoiler } from '@/components/spoiler/Spoiler';
 import styles from './ProductsList.module.scss';
-import { useProducts } from "@/hooks/useProducts";
+import { useProducts } from '@/hooks/useProducts';
 import { ProductItem } from '@/components/product-item/ProductItem';
 import { useCategories } from '@/hooks/useCategories';
 import { useEffect, useState } from 'react';
@@ -30,25 +30,25 @@ export function ProductsList() {
 		const handler = (event: Event) => {
 			const e = event as CustomEvent<LocalStorageUpdateEventDetail>;
 
-			if (e.detail.key === "category") {
-				setCategory(e.detail.value || "");
+			if (e.detail.key === 'category') {
+				setCategory(e.detail.value || '');
 
 				setTimeout(() => {
-					localStorage.removeItem("category");
-				}, 0)
+					localStorage.removeItem('category');
+				}, 0);
 			}
 		};
 
-		window.addEventListener("localstorage-update", handler);
+		window.addEventListener('localstorage-update', handler);
 
-		const selectCategory = localStorage.getItem("category");
+		const selectCategory = localStorage.getItem('category');
 		if (selectCategory) {
 			setCategory(selectCategory);
-			localStorage.removeItem("category");
+			localStorage.removeItem('category');
 		}
 
 		return () => {
-			window.removeEventListener("localstorage-update", handler);
+			window.removeEventListener('localstorage-update', handler);
 		};
 	}, []);
 
@@ -69,18 +69,18 @@ export function ProductsList() {
 	const handleCategoryName = (categoryName: string) => {
 		setCategory(prev => (prev === categoryName ? '' : categoryName));
 		setCurrentPage(1);
-	}
+	};
 
 	if (isLoading) {
-		return null
+		return null;
 	}
 
 	return (
 		<section className={styles.productListSection}>
 			{isClient && isFetching && !isLoading && <Loader />}
 			<div className='container'>
-				{products
-					? <>
+				{products ? (
+					<>
 						<div className={styles.header}>
 							<h1 className={styles.title}>Best Selling Products</h1>
 							<div className={styles.filterBar}>
@@ -91,30 +91,34 @@ export function ProductsList() {
 										oneSpoiler={true}
 										className={styles.spoilerBlock}
 									>
-										<button className={`spoller-button ${styles.spoilerButton}`}>Collections</button>
+										<button className={`spoller-button ${styles.spoilerButton}`}>
+											Collections
+										</button>
 										<ul hidden className={styles.collectionsList}>
-											{categories?.map(category =>
+											{categories?.map(category => (
 												<li
 													onClick={() => handleCategoryName(category.name)}
 													key={category.id}
 												>
 													<span>{category.name}</span>
 												</li>
-											)}
+											))}
 										</ul>
 									</Spoiler>
 								</div>
 							</div>
 						</div>
 						<div className={styles.productsList}>
-							{products.map(product =>
+							{products.map(product => (
 								<ProductItem key={product.id} product={product} imageIsPriority />
-							)}
+							))}
 						</div>
 						<Pagination page={currentPage} setPage={setCurrentPage} totalPages={totalPages} />
 					</>
-					: <h2 className={styles.notFoundTitle}>Products Not Found</h2>}
+				) : (
+					<h2 className={styles.notFoundTitle}>Products Not Found</h2>
+				)}
 			</div>
 		</section>
-	)
+	);
 }

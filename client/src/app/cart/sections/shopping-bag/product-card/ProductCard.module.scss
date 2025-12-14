@@ -1,0 +1,76 @@
+.card-wrapper {
+	max-width: 300px;
+	display: flex;
+	column-gap: 15px;
+}
+
+.content {
+	flex: 0 1 250px;
+}
+
+.image-wrapper {
+	width: 100%;
+	margin-bottom: 20px;
+	position: relative;
+	aspect-ratio: 250 / 340;
+	border-radius: 10px;
+	background: linear-gradient(#313131 0%, #121212 100%);
+}
+
+.description {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.125rem;
+	font-weight: 500;
+}
+
+.product-price {
+	flex: 0 0 auto;
+	font-size: 1.0625rem;
+	letter-spacing: 0.5px;
+}
+
+.side-bar {
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 35px;
+}
+
+.delete-button {
+	align-self: start;
+}
+
+.product-management {
+	margin: auto 0;
+	padding-bottom: 25px;
+}
+
+.button-count {
+	display: block;
+	width: 100%;
+	padding: 6px 0;
+	font-size: 1.125rem;
+	line-height: 1;
+	border: 1px solid rgb(81, 81, 81);
+	text-align: center;
+
+	&:disabled {
+		pointer-events: none;
+		color: rgba(133, 133, 133, 1);
+		user-select: none;
+	}
+}
+
+.button-count:nth-child(3) {
+	font-size: 1.25rem;
+	padding: 4px 0 6px;
+}
+
+.product-count {
+	font-size: 1.125rem;
+	padding: 7px 0;
+	border-left: 1px solid rgb(81, 81, 81);
+	border-right: 1px solid rgb(81, 81, 81);
+	text-align: center;
+}
